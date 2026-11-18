@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Your Name</title>
+    <meta name="description" content="Personal website of Your Name: research, projects, and news.">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+      // Apply the saved theme before the page paints, to avoid a flash.
+      try {
+        const t = localStorage.getItem("theme");
+        if (t) document.documentElement.dataset.theme = t;
+      } catch (e) { /* storage blocked: fall back to system theme */ }
+    </script>
+  </head>
+  <body>
+    <button class="theme-toggle" type="button" aria-label="Toggle dark mode">
+      <span class="theme-toggle__icon" aria-hidden="true"></span>
+    </button>
+
+    <div class="layout">
+      <!-- ============ SIDEBAR ============ -->
+      <aside class="sidebar">
+        <img class="avatar" src="assets/profile.svg" alt="Portrait of Your Name" width="180" height="180">
+        <h1 class="name">Your Name</h1>
+        <p class="role">Software Engineer · ML Enthusiast</p>
+        <p class="location">City, Country</p>
+
+        <nav class="social" aria-label="Social links">
+          <a href="https://github.com/your-username">GitHub</a>
+          <a href="https://www.linkedin.com/in/your-username">LinkedIn</a>
+          <a href="https://x.com/your-username">X / Twitter</a>
+          <a href="https://scholar.google.com/">Scholar</a>
+          <!-- Put your CV at site/assets/cv.pdf, then uncomment:
+          <a href="assets/cv.pdf">CV</a> -->
+        </nav>
+      </aside>
+
+      <!-- ============ MAIN CONTENT ============ -->
+      <main class="content">
+        <section id="about">
+          <h2>About</h2>
+          <p>
+            Hi! I'm <strong>Your Name</strong>. I'm a software engineer interested in
+            machine learning, computer vision, and building tools people love to use.
+            Currently I'm working on <a href="#projects">exciting things</a> at
+            <strong>Your Company / University</strong>.
+          </p>
+          <p>
+            Before that, I studied Computer Science at <strong>Your University</strong>.
+            In my free time I enjoy reading, hiking, and tinkering with side projects.
+          </p>
+          <p class="contact">
+            Reach me at <span class="mono">hello [at] yourdomain [dot] com</span>
+          </p>
+        </section>
+
+        <section id="news">
+          <h2>News</h2>
+          <ul class="news">
+            <li><time datetime="2026-11">Nov 2026</time><span>Launched this website, with CI/CD via GitHub Actions 🚀</span></li>
+            <li><time datetime="2026-09">Sep 2026</time><span>Started a new role at <strong>Company</strong>.</span></li>
+            <li><time datetime="2026-06">Jun 2026</time><span>Our paper <em>Project Title</em> was accepted to <strong>Conference 2026</strong>.</span></li>
+            <li><time datetime="2026-03">Mar 2026</time><span>Gave a talk on <em>Topic</em> at <strong>Meetup</strong>.</span></li>
+            <li class="news--extra"><time datetime="2025-12">Dec 2025</time><span>Graduated from <strong>Your University</strong>.</span></li>
+            <li class="news--extra"><time datetime="2025-06">Jun 2025</time><span>Interned at <strong>Company</strong>.</span></li>
+          </ul>
+          <button class="link-button" type="button" id="news-toggle" aria-expanded="false">Show more</button>
+        </section>
+
+        <section id="projects">
+          <h2>Projects &amp; Publications</h2>
+
+          <article class="project">
+            <img class="project__thumb" src="assets/project-1.svg" alt="Thumbnail for Project One" width="200" height="130" loading="lazy">
+            <div class="project__body">
+              <h3>Project One: A Short, Catchy Title</h3>
+              <p class="project__authors"><strong>Your Name</strong>, Collaborator A, Collaborator B</p>
+              <p class="project__venue">Conference 2026 <span class="badge">Oral</span></p>
+              <p class="project__desc">One or two sentences about what this project does and why it matters.</p>
+              <p class="project__links">
+                <a href="https://example.com">Paper</a>
+                <a href="https://github.com/your-username">Code</a>
+                <a href="https://example.com">Website</a>
+              </p>
+            </div>
+          </article>
+
+          <article class="project">
+            <img class="project__thumb" src="assets/project-2.svg" alt="Thumbnail for Project Two" width="200" height="130" loading="lazy">
+            <div class="project__body">
+              <h3>Project Two: Another Cool Thing</h3>
+              <p class="project__authors"><strong>Your Name</strong></p>
+              <p class="project__venue">Side project · 2025</p>
+              <p class="project__desc">A tool I built to solve a problem I kept running into.</p>
+              <p class="project__links">
+                <a href="https://github.com/your-username">Code</a>
+                <a href="https://example.com">Demo</a>
+              </p>
+            </div>
+          </article>
+        </section>
+
+        <section id="experience">
+          <h2>Experience</h2>
+          <ul class="timeline">
+            <li><span class="timeline__when">2026 – now</span><span><strong>Software Engineer</strong>, Company</span></li>
+            <li><span class="timeline__when">2025</span><span><strong>Intern</strong>, Company</span></li>
+            <li><span class="timeline__when">2021 – 2025</span><span><strong>B.Sc. Computer Science</strong>, Your University</span></li>
+          </ul>
+        </section>
+
+        <footer class="footer">
+          <p>© <span id="year">2026</span> Your Name · Deployed automatically with GitHub Actions</p>
+        </footer>
+      </main>
+    </div>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>
