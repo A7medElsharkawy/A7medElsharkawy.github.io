@@ -154,29 +154,123 @@ h3 { font-size: 1.05rem; margin: 0 0 0.25rem; }
 }
 .info svg { flex-shrink: 0; color: var(--muted); }
 
+/* Grid columns won't shrink below their content by default.
+   min-width: 0 lets the news row scroll INSIDE the column
+   instead of stretching the whole page sideways. */
+.content { min-width: 0; }
+
 .content > section:first-child h2 { margin-top: 0; }
 
 /* ---------- News ---------- */
-.news { list-style: none; padding: 0; margin: 0; }
-.news li {
-  display: grid;
-  grid-template-columns: 90px 1fr;
+/* Heading row: "News" on the left, arrows on the right */
+.section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: 1rem;
-  padding: 0.35rem 0;
+  margin: 2.5rem 0 1rem;
+  border-bottom: 1px solid var(--border);
 }
-.news time { color: var(--muted); font-variant-numeric: tabular-nums; }
-.news .news--extra { display: none; }
-.news.is-expanded .news--extra { display: grid; }
+.section-head h2 { margin: 0; padding-bottom: 0.35rem; border-bottom: 0; }
 
-.link-button {
-  background: none;
-  border: 0;
-  padding: 0.25rem 0;
-  color: var(--accent);
-  font: inherit;
+.news-nav { display: flex; gap: 0.4rem; padding-bottom: 0.35rem; }
+.news-nav__btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  font-size: 1.3rem;
+  line-height: 1;
   cursor: pointer;
+  transition: background 0.15s ease, opacity 0.15s ease;
 }
-.link-button:hover { text-decoration: underline; }
+.news-nav__btn:hover:not(:disabled) { background: var(--border); }
+.news-nav__btn:disabled { opacity: 0.35; cursor: default; }
+
+/* The scrolling row of cards */
+.news {
+  list-style: none;
+  margin: 0;
+  padding: 0.25rem 0.1rem 0.9rem;
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+.news::-webkit-scrollbar { height: 6px; }
+.news::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+.news-card {
+  flex: 0 0 300px; /* ← card width */
+  display: flex;
+  flex-direction: column;
+  scroll-snap-align: start;
+  overflow: hidden; /* clip the photo to the rounded corners */
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.news-card__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9; /* ← photo shape; every photo is cropped to this */
+  object-fit: cover;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Two photos side by side, together the same 16:9 shape as a single photo */
+.news-card__media--duo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: minmax(0, 1fr); /* don't let tall photos stretch the row */
+  gap: 2px;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+  background: var(--border);
+}
+.news-card__media--duo .news-card__img {
+  height: 100%;
+  aspect-ratio: auto;
+  object-position: center 20%; /* keep faces in frame for portrait photos */
+  border-bottom: 0;
+}
+
+/* Group photos: people stand in the upper-middle, so aim the crop there */
+.news-card__img--group { object-position: center 30%; }
+
+.news-card__body { padding: 1rem 1.1rem 1.2rem; }
+
+.news-card h3 {
+  margin: 0 0 0.4rem;
+  font-size: 1rem;
+  line-height: 1.35;
+}
+.news-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px -10px rgba(0, 0, 0, 0.35);
+}
+.news-card time {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  padding: 0.1rem 0.6rem;
+  border-radius: 999px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.news-card p { margin: 0; font-size: 0.92rem; line-height: 1.55; color: var(--muted); }
 
 /* ---------- Projects ---------- */
 .project {
@@ -265,6 +359,7 @@ h3 { font-size: 1.05rem; margin: 0 0 0.25rem; }
   .project { grid-template-columns: 1fr; margin: 0 0 1rem; padding: 0; }
   .project:hover { background: none; }
   .project__thumb { width: 100%; height: auto; aspect-ratio: 20 / 13; }
-  .news li { grid-template-columns: 75px 1fr; gap: 0.75rem; }
+  .news-card { flex-basis: 82%; } /* phones: one card + a peek of the next */
+  .news-nav { display: none; }    /* phones: swipe instead of arrows */
   .timeline li { grid-template-columns: 1fr; gap: 0; }
 }

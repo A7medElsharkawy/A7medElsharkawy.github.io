@@ -68,31 +68,132 @@
         <section id="about">
           <h2>About</h2>
           <p>
-            Hi! I'm <strong>Ahmed Ibrahim</strong>. I'm a software engineer interested in
-            machine learning, computer vision, and building tools people love to use.
-            Currently I'm working on <a href="#projects">exciting things</a> at
-            <strong>Your Company / University</strong>.
+            Hi! I'm <strong>Ahmed Ibrahim</strong>, an AI Engineer interested in
+            <strong>inference engineering</strong>: making models run faster, cheaper,
+            and more reliably in production. I also enjoy building AI workflows
+            that turn models into practical tools for solving real problems.
           </p>
           <p>
-            Before that, I studied Computer Science at <strong>Your University</strong>.
-            In my free time I enjoy reading, hiking, and tinkering with side projects.
+            I'm currently pursuing a <strong>Master of Computer Science</strong> at the
+            <strong>University of Lethbridge</strong>, Canada. My research focuses on
+            optimizing <strong>post-training approaches to detect and mitigate hallucinations</strong>
+            in large language models, improving reliability without the computing power and
+            time required to retrain them.
           </p>
           <p class="contact">
-            Reach me at <span class="mono">hello [at] yourdomain [dot] com</span>
+            Feel free to reach me at
+            <a href="mailto:ahmed.m.ibrahiim@outlook.com">ahmed.m.ibrahiim@outlook.com</a>.
           </p>
         </section>
 
         <section id="news">
-          <h2>News</h2>
-          <ul class="news">
-            <li><time datetime="2026-11">Nov 2026</time><span>Launched this website, with CI/CD via GitHub Actions 🚀</span></li>
-            <li><time datetime="2026-09">Sep 2026</time><span>Started a new role at <strong>Company</strong>.</span></li>
-            <li><time datetime="2026-06">Jun 2026</time><span>Our paper <em>Project Title</em> was accepted to <strong>Conference 2026</strong>.</span></li>
-            <li><time datetime="2026-03">Mar 2026</time><span>Gave a talk on <em>Topic</em> at <strong>Meetup</strong>.</span></li>
-            <li class="news--extra"><time datetime="2025-12">Dec 2025</time><span>Graduated from <strong>Your University</strong>.</span></li>
-            <li class="news--extra"><time datetime="2025-06">Jun 2025</time><span>Interned at <strong>Company</strong>.</span></li>
+          <div class="section-head">
+            <h2>News</h2>
+            <div class="news-nav">
+              <button class="news-nav__btn" type="button" data-dir="-1" aria-label="Previous news">‹</button>
+              <button class="news-nav__btn" type="button" data-dir="1" aria-label="Next news">›</button>
+            </div>
+          </div>
+          <!--
+            Newest first. To add news, copy one <li class="news-card"> block to the top.
+            Photos: put them in site/assets/news/ (landscape works best, e.g. 1200x675)
+            and change the src + alt. Any shape is fine: it's cropped to fit.
+          -->
+          <ul class="news" aria-label="News">
+            <li class="news-card">
+              <img class="news-card__img news-card__img--group" src="assets/news/mansoura-honor-2025.jpg" alt="Ahmed holding a certificate of honor with university leaders at Mansoura University" width="1200" height="757" loading="lazy">
+              <div class="news-card__body">
+                <time datetime="2025">2025</time>
+                <h3>🎓 Honored as a top student at Mansoura University</h3>
+                <p>
+                  Honored by the <strong>President of Mansoura University</strong> and selected
+                  as one of the university's <strong>top students of the year</strong>.
+                </p>
+              </div>
+            </li>
+            <li class="news-card">
+              <img class="news-card__img news-card__img--group" src="assets/news/mcit-honor-2025.jpg" alt="Ahmed being honored at Egypt's Ministry of Communications and Information Technology" width="1200" height="854" loading="lazy">
+              <div class="news-card__body">
+                <time datetime="2025">2025</time>
+                <h3>🏅 Honored by Egypt's Minister of Communications and IT</h3>
+                <p>
+                  Honored by the <strong>Minister of Communications and Information Technology</strong>
+                  at the Ministry's headquarters in Egypt.
+                </p>
+              </div>
+            </li>
+            <li class="news-card">
+              <img class="news-card__img news-card__img--group" src="assets/news/huawei-global-final-2025.jpg" alt="Ahmed and the Egypt team holding the Egyptian flag on stage at the Huawei ICT Competition Global Final" width="1200" height="900" loading="lazy">
+              <div class="news-card__body">
+                <time datetime="2025">2025</time>
+                <h3>🥇 1st place, Huawei ICT Competition Global Final</h3>
+                <p>
+                  Represented <strong>Egypt</strong> at the Huawei ICT Competition Global Final,
+                  held at <strong>Huawei headquarters in China</strong>, and won
+                  <strong>1st place among more than 36 teams</strong> from around the world.
+                </p>
+              </div>
+            </li>
+            <li class="news-card">
+              <!-- Two photos side by side: use class "news-card__media--duo" -->
+              <div class="news-card__media news-card__media--duo">
+                <img class="news-card__img" src="assets/news/huawei-ict-2.jpg" alt="Ahmed holding the 2nd place trophy and certificate at the Huawei ICT Competition North Africa Regional Final" width="750" height="1000" loading="lazy">
+                <img class="news-card__img" src="assets/news/huawei-ict-1.jpg" alt="Ahmed standing beside the Huawei ICT Competition 2023–2024 Northern Africa Regional Final banner in Tunis" width="750" height="1000" loading="lazy">
+              </div>
+              <div class="news-card__body">
+                <time datetime="2024">2024</time>
+                <h3>🥈 2nd place, Huawei ICT Competition, North Africa</h3>
+                <p>
+                  Represented <strong>Egypt</strong> at the Huawei ICT Competition 2023–2024
+                  Northern Africa Regional Final in <strong>Tunis, Tunisia</strong>, and won
+                  <strong>2nd place among 15 teams</strong> from countries across North Africa.
+                </p>
+              </div>
+            </li>
+            <li class="news-card">
+              <img class="news-card__img" src="assets/news/placeholder.svg" alt="Screenshot of my personal website" width="320" height="180" loading="lazy">
+              <div class="news-card__body">
+                <time datetime="2026-11">Nov 2026</time>
+                <h3>Launched my personal website 🚀</h3>
+                <p>
+                  Built from scratch with HTML, CSS and JavaScript, and deployed automatically
+                  with a CI/CD pipeline on GitHub Actions: every change is validated and
+                  tested before it goes live.
+                </p>
+              </div>
+            </li>
+            <li class="news-card">
+              <img class="news-card__img" src="assets/news/placeholder.svg" alt="University of Lethbridge campus" width="320" height="180" loading="lazy">
+              <div class="news-card__body">
+                <time datetime="2026-09">Sep 2026</time>
+                <h3>Started my Master's at Lethbridge</h3>
+                <p>
+                  Began my Master of Computer Science at the University of Lethbridge,
+                  researching post-training methods to detect and mitigate hallucinations
+                  in large language models.
+                </p>
+              </div>
+            </li>
+            <li class="news-card">
+              <img class="news-card__img" src="assets/news/placeholder.svg" alt="Placeholder news photo" width="320" height="180" loading="lazy">
+              <div class="news-card__body">
+                <time datetime="2026-06">Jun 2026</time>
+                <h3>News title goes here</h3>
+                <p>
+                  A few sentences describing what happened, why it matters, and what
+                  you learned. Cards stretch to fit longer descriptions.
+                </p>
+              </div>
+            </li>
+            <li class="news-card">
+              <img class="news-card__img" src="assets/news/placeholder.svg" alt="Placeholder news photo" width="320" height="180" loading="lazy">
+              <div class="news-card__body">
+                <time datetime="2026-03">Mar 2026</time>
+                <h3>Another news title</h3>
+                <p>Short or long, both work. Replace this with your own story.</p>
+              </div>
+            </li>
           </ul>
-          <button class="link-button" type="button" id="news-toggle" aria-expanded="false">Show more</button>
         </section>
 
         <section id="projects">
