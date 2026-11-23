@@ -65,6 +65,16 @@ jobs:
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
+      # Cache busting: give CSS/JS/favicon a new URL on every deploy
+      # (e.g. css/style.css?v=1a2b3c4), so browsers and Cloudflare
+      # can never serve an old cached copy with new HTML.
+      - name: Stamp asset URLs with commit id
+        run: |
+          VERSION="${GITHUB_SHA::7}"
+          sed -i "s/__BUILD__/${VERSION}/g" site/index.html
+          echo "Stamped assets with version ${VERSION}"
+          grep -n "?v=${VERSION}" site/index.html
+
       - name: Upload site folder
         uses: actions/upload-pages-artifact@v3
         with:
