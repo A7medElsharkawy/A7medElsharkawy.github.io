@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#b91c1c"/>
+      <stop offset="1" stop-color="#7c2d12"/>
+    </linearGradient>
+  </defs>
+  <rect width="320" height="180" fill="url(#g)"/>
+  <!-- globe -->
+  <g fill="none" stroke="#fff" stroke-width="3" opacity="0.95">
+    <circle cx="92" cy="86" r="46"/>
+    <ellipse cx="92" cy="86" rx="20" ry="46"/>
+    <path d="M46 86h92M53 62h78M53 110h78"/>
+  </g>
+  <!-- southern hemisphere highlight -->
+  <path d="M46 86a46 46 0 0 0 92 0z" fill="#fbbf24" opacity="0.35"/>
+  <!-- flight arc to a pin -->
+  <path d="M128 60 C 170 20, 220 24, 246 62" fill="none" stroke="#fde68a" stroke-width="2.5" stroke-dasharray="5 5"/>
+  <path d="M246 44c-8.3 0-15 6.5-15 14.6 0 11 15 24.4 15 24.4s15-13.4 15-24.4C261 50.5 254.3 44 246 44z" fill="#fbbf24"/>
+  <circle cx="246" cy="58.5" r="5" fill="#7c2d12"/>
+  <text x="246" y="110" font-family="sans-serif" font-size="15" font-weight="700" fill="#fff" text-anchor="middle">Calgary</text>
+  <text x="160" y="160" font-family="sans-serif" font-size="16" font-weight="700" fill="#fff" text-anchor="middle">Global South Visit 2027</text>
+</svg>
