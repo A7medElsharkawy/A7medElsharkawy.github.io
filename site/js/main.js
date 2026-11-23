@@ -17,19 +17,29 @@ toggle.addEventListener("click", () => {
   }
 });
 
-// ---- News "show more" ----
-const newsList = document.querySelector(".news");
-const newsToggle = document.getElementById("news-toggle");
+// ---- News cards: arrow buttons scroll the row ----
+const newsRow = document.querySelector(".news");
+const newsButtons = document.querySelectorAll(".news-nav__btn");
 
-if (!newsList.querySelector(".news--extra")) {
-  newsToggle.hidden = true;
+if (newsRow) {
+  newsButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const card = newsRow.querySelector(".news-card");
+      const step = card ? card.offsetWidth + 16 : 260; // card width + gap
+      newsRow.scrollBy({ left: step * Number(btn.dataset.dir) });
+    });
+  });
+
+  // Grey out an arrow when you're already at that end.
+  const updateArrows = () => {
+    const max = newsRow.scrollWidth - newsRow.clientWidth - 2;
+    newsButtons[0].disabled = newsRow.scrollLeft <= 2;
+    newsButtons[1].disabled = newsRow.scrollLeft >= max;
+  };
+  newsRow.addEventListener("scroll", updateArrows, { passive: true });
+  window.addEventListener("resize", updateArrows);
+  updateArrows();
 }
-
-newsToggle.addEventListener("click", () => {
-  const expanded = newsList.classList.toggle("is-expanded");
-  newsToggle.textContent = expanded ? "Show less" : "Show more";
-  newsToggle.setAttribute("aria-expanded", String(expanded));
-});
 
 // ---- Footer year ----
 document.getElementById("year").textContent = new Date().getFullYear();

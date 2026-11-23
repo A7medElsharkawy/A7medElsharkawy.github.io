@@ -8,6 +8,8 @@
   --card: #f8fafc;
   --badge-bg: #fee2e2;
   --badge-text: #b91c1c;
+  --metric-bg: #dcfce7;
+  --metric-text: #166534;
   --max: 1100px;
   --avatar-shadow: 0 18px 40px -8px rgba(15, 23, 42, 0.45), 0 6px 14px rgba(15, 23, 42, 0.25);
   color-scheme: light;
@@ -23,6 +25,8 @@
     --card: #161a21;
     --badge-bg: #3b1d1d;
     --badge-text: #fca5a5;
+    --metric-bg: #14351f;
+    --metric-text: #86efac;
     --avatar-shadow: 0 18px 40px -8px rgba(0, 0, 0, 0.85), 0 6px 14px rgba(0, 0, 0, 0.6);
     color-scheme: dark;
   }
@@ -37,6 +41,8 @@
   --card: #161a21;
   --badge-bg: #3b1d1d;
   --badge-text: #fca5a5;
+  --metric-bg: #14351f;
+  --metric-text: #86efac;
   --avatar-shadow: 0 18px 40px -8px rgba(0, 0, 0, 0.85), 0 6px 14px rgba(0, 0, 0, 0.6);
   color-scheme: dark;
 }
@@ -154,29 +160,125 @@ h3 { font-size: 1.05rem; margin: 0 0 0.25rem; }
 }
 .info svg { flex-shrink: 0; color: var(--muted); }
 
+/* Grid columns won't shrink below their content by default.
+   min-width: 0 lets the news row scroll INSIDE the column
+   instead of stretching the whole page sideways. */
+.content { min-width: 0; }
+
 .content > section:first-child h2 { margin-top: 0; }
 
 /* ---------- News ---------- */
-.news { list-style: none; padding: 0; margin: 0; }
-.news li {
-  display: grid;
-  grid-template-columns: 90px 1fr;
+/* Heading row: "News" on the left, arrows on the right */
+.section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: 1rem;
-  padding: 0.35rem 0;
+  margin: 2.5rem 0 1rem;
+  border-bottom: 1px solid var(--border);
 }
-.news time { color: var(--muted); font-variant-numeric: tabular-nums; }
-.news .news--extra { display: none; }
-.news.is-expanded .news--extra { display: grid; }
+.section-head h2 { margin: 0; padding-bottom: 0.35rem; border-bottom: 0; }
 
-.link-button {
-  background: none;
-  border: 0;
-  padding: 0.25rem 0;
-  color: var(--accent);
-  font: inherit;
+.news-nav { display: flex; gap: 0.4rem; padding-bottom: 0.35rem; }
+.news-nav__btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  font-size: 1.3rem;
+  line-height: 1;
   cursor: pointer;
+  transition: background 0.15s ease, opacity 0.15s ease;
 }
-.link-button:hover { text-decoration: underline; }
+.news-nav__btn:hover:not(:disabled) { background: var(--border); }
+.news-nav__btn:disabled { opacity: 0.35; cursor: default; }
+
+/* The scrolling row of cards */
+.news {
+  list-style: none;
+  margin: 0;
+  padding: 0.25rem 0.1rem 0.9rem;
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+.news::-webkit-scrollbar { height: 6px; }
+.news::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+.news-card {
+  flex: 0 0 300px; /* ← card width */
+  display: flex;
+  flex-direction: column;
+  scroll-snap-align: start;
+  overflow: hidden; /* clip the photo to the rounded corners */
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.news-card__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9; /* ← photo shape; every photo is cropped to this */
+  object-fit: cover;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Two photos side by side, together the same 16:9 shape as a single photo */
+.news-card__media--duo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: minmax(0, 1fr); /* don't let tall photos stretch the row */
+  gap: 2px;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+  background: var(--border);
+}
+.news-card__media--duo .news-card__img {
+  height: 100%;
+  aspect-ratio: auto;
+  object-position: center 20%; /* keep faces in frame for portrait photos */
+  border-bottom: 0;
+}
+
+/* Group photos: people stand in the upper-middle, so aim the crop there */
+.news-card__img--group { object-position: center 30%; }
+/* Tall selfies/portraits: crop toward the upper part where the face is */
+.news-card__img--portrait { object-position: center 35%; }
+
+.news-card__body { padding: 1rem 1.1rem 1.2rem; }
+
+.news-card h3 {
+  margin: 0 0 0.4rem;
+  font-size: 1rem;
+  line-height: 1.35;
+}
+.news-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px -10px rgba(0, 0, 0, 0.35);
+}
+.news-card time {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  padding: 0.1rem 0.6rem;
+  border-radius: 999px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.news-card p { margin: 0; font-size: 0.92rem; line-height: 1.55; color: var(--muted); }
 
 /* ---------- Projects ---------- */
 .project {
@@ -203,6 +305,132 @@ h3 { font-size: 1.05rem; margin: 0 0 0.25rem; }
 .project__desc { font-size: 0.95rem; }
 .project__links { display: flex; flex-wrap: wrap; gap: 0.9rem; font-size: 0.93rem; margin-top: 0.4rem !important; }
 
+/* Pill buttons for Paper / Code links */
+.project__links .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.85rem;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  color: var(--accent);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.project__links a.btn:hover { background: var(--accent); color: var(--bg); }
+
+/* Paper figures used as thumbnails: show the whole figure, don't crop */
+.project__thumb-link { display: block; align-self: start; }
+.project__thumb--figure {
+  object-fit: contain;
+  background: #fff; /* figures are drawn on white */
+  padding: 4px;
+  cursor: zoom-in;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.project__thumb-link:hover .project__thumb--figure {
+  transform: scale(1.03);
+  box-shadow: 0 8px 20px -10px rgba(0, 0, 0, 0.4);
+}
+
+/* Full-width figure inside an opened abstract */
+.abstract__figure { margin: 0.9rem 0 0; }
+.abstract__figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fff;
+  cursor: zoom-in;
+}
+.abstract__figure figcaption {
+  margin-top: 0.4rem;
+  color: var(--muted);
+  font-size: 0.82rem;
+  text-align: center;
+}
+
+/* Collapsible abstract */
+.abstract { margin-top: 0.6rem; }
+.abstract summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.85rem;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  color: var(--accent);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none; /* hide the default triangle */
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.abstract summary::-webkit-details-marker { display: none; }
+.abstract summary::before { content: "▸"; transition: transform 0.15s ease; }
+.abstract[open] summary::before { transform: rotate(90deg); }
+.abstract summary:hover { background: var(--accent); color: var(--bg); }
+.abstract p {
+  margin: 0.75rem 0 0 !important;
+  padding: 0.9rem 1.1rem;
+  border-left: 3px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+  background: var(--card);
+  font-size: 0.92rem;
+  line-height: 1.65;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* "Coming soon" state: greyed out, not clickable */
+.project__links .btn--soon {
+  border-color: var(--border);
+  color: var(--muted);
+  cursor: not-allowed;
+}
+.btn--soon small {
+  padding: 0 0.4rem;
+  border-radius: 999px;
+  background: var(--border);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+/* Result highlights, e.g. "85% F1" */
+.metric {
+  display: inline-block;
+  margin: 0.15rem 0.35rem 0.15rem 0;
+  padding: 0.05rem 0.55rem;
+  border-radius: 999px;
+  background: var(--metric-bg);
+  color: var(--metric-text);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+/* Technology chips */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.tags li {
+  padding: 0.05rem 0.55rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
 .badge {
   display: inline-block;
   margin-left: 0.4rem;
@@ -213,16 +441,6 @@ h3 { font-size: 1.05rem; margin: 0 0 0.25rem; }
   font-size: 0.75rem;
   font-weight: 600;
 }
-
-/* ---------- Experience ---------- */
-.timeline { list-style: none; padding: 0; margin: 0; }
-.timeline li {
-  display: grid;
-  grid-template-columns: 110px 1fr;
-  gap: 1rem;
-  padding: 0.35rem 0;
-}
-.timeline__when { color: var(--muted); font-variant-numeric: tabular-nums; }
 
 /* ---------- Footer ---------- */
 .footer {
@@ -265,6 +483,6 @@ h3 { font-size: 1.05rem; margin: 0 0 0.25rem; }
   .project { grid-template-columns: 1fr; margin: 0 0 1rem; padding: 0; }
   .project:hover { background: none; }
   .project__thumb { width: 100%; height: auto; aspect-ratio: 20 / 13; }
-  .news li { grid-template-columns: 75px 1fr; gap: 0.75rem; }
-  .timeline li { grid-template-columns: 1fr; gap: 0; }
+  .news-card { flex-basis: 82%; } /* phones: one card + a peek of the next */
+  .news-nav { display: none; }    /* phones: swipe instead of arrows */
 }

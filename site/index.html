@@ -68,77 +68,323 @@
         <section id="about">
           <h2>About</h2>
           <p>
-            Hi! I'm <strong>Ahmed Ibrahim</strong>. I'm a software engineer interested in
-            machine learning, computer vision, and building tools people love to use.
-            Currently I'm working on <a href="#projects">exciting things</a> at
-            <strong>Your Company / University</strong>.
+            Hi! I'm <strong>Ahmed Ibrahim</strong>, an AI Engineer interested in
+            <strong>inference engineering</strong>: making models run faster, cheaper,
+            and more reliably in production. I also enjoy building AI workflows
+            that turn models into practical tools for solving real problems.
           </p>
           <p>
-            Before that, I studied Computer Science at <strong>Your University</strong>.
-            In my free time I enjoy reading, hiking, and tinkering with side projects.
+            I'm currently pursuing a <strong>Master of Computer Science</strong> at the
+            <strong>University of Lethbridge</strong>, Canada. My research focuses on
+            optimizing <strong>post-training approaches to detect and mitigate hallucinations</strong>
+            in large language models, improving reliability without the computing power and
+            time required to retrain them.
           </p>
           <p class="contact">
-            Reach me at <span class="mono">hello [at] yourdomain [dot] com</span>
+            Feel free to reach me at
+            <a href="mailto:ahmed.m.ibrahiim@outlook.com">ahmed.m.ibrahiim@outlook.com</a>.
           </p>
         </section>
 
         <section id="news">
-          <h2>News</h2>
-          <ul class="news">
-            <li><time datetime="2026-11">Nov 2026</time><span>Launched this website, with CI/CD via GitHub Actions 🚀</span></li>
-            <li><time datetime="2026-09">Sep 2026</time><span>Started a new role at <strong>Company</strong>.</span></li>
-            <li><time datetime="2026-06">Jun 2026</time><span>Our paper <em>Project Title</em> was accepted to <strong>Conference 2026</strong>.</span></li>
-            <li><time datetime="2026-03">Mar 2026</time><span>Gave a talk on <em>Topic</em> at <strong>Meetup</strong>.</span></li>
-            <li class="news--extra"><time datetime="2025-12">Dec 2025</time><span>Graduated from <strong>Your University</strong>.</span></li>
-            <li class="news--extra"><time datetime="2025-06">Jun 2025</time><span>Interned at <strong>Company</strong>.</span></li>
+          <div class="section-head">
+            <h2>News</h2>
+            <div class="news-nav">
+              <button class="news-nav__btn" type="button" data-dir="-1" aria-label="Previous news">‹</button>
+              <button class="news-nav__btn" type="button" data-dir="1" aria-label="Next news">›</button>
+            </div>
+          </div>
+          <!--
+            Newest first. To add news, copy one <li class="news-card"> block to the top.
+            Photos: put them in site/assets/news/ (landscape works best, e.g. 1200x675)
+            and change the src + alt. Any shape is fine: it's cropped to fit.
+            Before adding a phone photo, remove its hidden GPS data:
+              npm run clean-photos -- site/assets/news/your-photo.jpg
+          -->
+          <ul class="news" aria-label="News">
+            <li class="news-card">
+              <img class="news-card__img" src="assets/news/global-south-visit-2027.svg" alt="Illustration of a globe with a flight path to Calgary for the Global South Visit 2027" width="320" height="180" loading="lazy">
+              <div class="news-card__body">
+                <time datetime="2027-01-19">Jan 2027</time>
+                <h3>🌍 Invited to the Global South Visit 2027</h3>
+                <p>
+                  Excited to announce that I've been invited to attend the
+                  <strong>Global South Visit 2027</strong> at the
+                  <strong>University of Calgary</strong>, taking place
+                  <strong>January 19–25, 2027</strong>.
+                </p>
+              </div>
+            </li>
+            <li class="news-card">
+              <img class="news-card__img" src="assets/news/uleth-campus.jpg" alt="Aerial view of the University of Lethbridge campus in winter at sunset" width="1400" height="350" loading="lazy">
+              <div class="news-card__body">
+                <time datetime="2026-01">Jan 2026</time>
+                <h3>🇨🇦 A new chapter: Master's at the University of Lethbridge</h3>
+                <p>
+                  Excited to share that I've started a new chapter, pursuing a
+                  <strong>Master of Computer Science</strong> at the
+                  <strong>University of Lethbridge</strong> in Canada. My research focuses on
+                  <strong>detecting hallucinations</strong> in large language models and
+                  <strong>inference optimization</strong>.
+                </p>
+              </div>
+            </li>
+            <li class="news-card">
+              <img class="news-card__img news-card__img--portrait" src="assets/news/huawei-top-hero-2025.jpg" alt="Ahmed holding the Top Hero award card next to his manager in the Huawei office" width="900" height="1200" loading="lazy">
+              <div class="news-card__body">
+                <time datetime="2025-10">Oct 2025</time>
+                <h3>🏆 Named Top Hero Employee of the Month</h3>
+                <p>
+                  Excited to be selected as <strong>Top Hero</strong> for October at
+                  <strong>Huawei</strong>, in recognition of my progress on one of my
+                  team's major projects.
+                </p>
+              </div>
+            </li>
+            <li class="news-card">
+              <img class="news-card__img news-card__img--portrait" src="assets/news/huawei-internship-2025.jpg" alt="Ahmed in front of the Huawei office building in New Cairo" width="900" height="1200" loading="lazy">
+              <div class="news-card__body">
+                <time datetime="2025-06">Jun 2025</time>
+                <h3>💼 Started as AI &amp; Cloud Engineer Intern at Huawei</h3>
+                <p>
+                  Joined <strong>Huawei</strong> in New Cairo, Egypt, building proof-of-concept
+                  demos for customers and real-time ML pipelines for low-latency inference
+                  at the network edge.
+                </p>
+              </div>
+            </li>
+            <li class="news-card">
+              <img class="news-card__img news-card__img--group" src="assets/news/mansoura-honor-2025.jpg" alt="Ahmed holding a certificate of honor with university leaders at Mansoura University" width="1200" height="757" loading="lazy">
+              <div class="news-card__body">
+                <time datetime="2025">2025</time>
+                <h3>🎓 Honored as a top student at Mansoura University</h3>
+                <p>
+                  Honored by the <strong>President of Mansoura University</strong> and selected
+                  as one of the university's <strong>top students of the year</strong>.
+                </p>
+              </div>
+            </li>
+            <li class="news-card">
+              <img class="news-card__img news-card__img--group" src="assets/news/mcit-honor-2025.jpg" alt="Ahmed being honored at Egypt's Ministry of Communications and Information Technology" width="1200" height="854" loading="lazy">
+              <div class="news-card__body">
+                <time datetime="2025">2025</time>
+                <h3>🏅 Honored by Egypt's Minister of Communications and IT</h3>
+                <p>
+                  Honored by the <strong>Minister of Communications and Information Technology</strong>
+                  at the Ministry's headquarters in Egypt.
+                </p>
+              </div>
+            </li>
+            <li class="news-card">
+              <img class="news-card__img news-card__img--group" src="assets/news/huawei-global-final-2025.jpg" alt="Ahmed and the Egypt team holding the Egyptian flag on stage at the Huawei ICT Competition Global Final" width="1200" height="900" loading="lazy">
+              <div class="news-card__body">
+                <time datetime="2025">2025</time>
+                <h3>🥇 1st place, Huawei ICT Competition Global Final</h3>
+                <p>
+                  Represented <strong>Egypt</strong> at the Huawei ICT Competition Global Final,
+                  held at <strong>Huawei headquarters in Shenzhen, China</strong>, and won
+                  <strong>1st place among more than 36 teams</strong> from around the world
+                  in the Computing Track (Cloud, AI, Networking).
+                </p>
+              </div>
+            </li>
+            <li class="news-card">
+              <!-- Two photos side by side: use class "news-card__media--duo" -->
+              <div class="news-card__media news-card__media--duo">
+                <img class="news-card__img" src="assets/news/huawei-ict-2.jpg" alt="Ahmed holding the 2nd place trophy and certificate at the Huawei ICT Competition North Africa Regional Final" width="750" height="1000" loading="lazy">
+                <img class="news-card__img" src="assets/news/huawei-ict-1.jpg" alt="Ahmed standing beside the Huawei ICT Competition 2023–2024 Northern Africa Regional Final banner in Tunis" width="750" height="1000" loading="lazy">
+              </div>
+              <div class="news-card__body">
+                <time datetime="2024">2024</time>
+                <h3>🥈 2nd place, Huawei ICT Competition, North Africa</h3>
+                <p>
+                  Represented <strong>Egypt</strong> at the Huawei ICT Competition 2023–2024
+                  Northern Africa Regional Final in <strong>Tunis, Tunisia</strong>, and won
+                  <strong>2nd place among 15 teams</strong> from countries across North Africa.
+                </p>
+              </div>
+            </li>
           </ul>
-          <button class="link-button" type="button" id="news-toggle" aria-expanded="false">Show more</button>
+        </section>
+
+        <section id="publications">
+          <h2>Publications</h2>
+
+          <!--
+            When the paper/code are public, replace each
+              <span class="btn btn--soon" ...>…</span>
+            with a real link, e.g.
+              <a class="btn" href="https://arxiv.org/abs/XXXX">📄 Paper</a>
+            and change the "Under review" badge to the accepted venue.
+            Newest first: add new papers at the top.
+          -->
+          <article class="project">
+            <a class="project__thumb-link" href="assets/publications/rama-figure.png" target="_blank" rel="noopener" title="Open full-size figure">
+              <img class="project__thumb project__thumb--figure" src="assets/publications/rama-figure.png" alt="RAMA overview figure: (a) prediction context, (b) recursive mobility profiler that generates, executes and assesses queries, (c) grounded prediction ranking venue IDs" width="1226" height="540" loading="lazy">
+            </a>
+            <div class="project__body">
+              <h3>RAMA: Recursive Adaptive Mobility Agents for Next-Location Prediction</h3>
+              <p class="project__authors">Sayed Gamal, <strong>Ahmed Ibrahim</strong>, Ricky Nguyen, Ali Sheikh Rabiei, Manos Papagelis, Enas Altarawneh</p>
+              <p class="project__venue">Submitted to <strong>NAACL 2027</strong> <span class="badge">Under review</span></p>
+              <ul class="tags" aria-label="Keywords">
+                <li>Agentic LLMs</li><li>LLM Agents</li><li>Tool Use</li><li>Function Calling</li><li>Planning</li><li>Multi-Agent Systems</li><li>Human Mobility</li><li>Spatiotemporal Reasoning</li><li>Next-Location Prediction</li>
+              </ul>
+              <p class="project__links">
+                <span class="btn btn--soon" aria-disabled="true" title="Coming soon">📄 Paper <small>soon</small></span>
+                <span class="btn btn--soon" aria-disabled="true" title="Coming soon">💻 Code <small>soon</small></span>
+              </p>
+              <details class="abstract">
+                <summary>Abstract</summary>
+                <p>
+                  Human mobility reflects complex interactions among personal routines, temporal
+                  context, and spatial behavior, making next-location prediction challenging for
+                  large language models (LLMs). Existing zero-shot LLM approaches typically reason
+                  over entire trajectory histories, static summaries, or predefined reasoning
+                  pipelines, limiting their ability to adapt evidence acquisition to each
+                  prediction. We introduce RAMA, a recursive adaptive agentic framework in which an
+                  LLM directly interrogates structured mobility histories. At each reasoning step,
+                  RAMA generates an executable retrieval program, evaluates the resulting behavioral
+                  evidence, updates a persistent reasoning state, and adaptively determines what
+                  evidence to retrieve next and when to terminate. Across seven cities from the
+                  TIST2015 and Gowalla datasets, RAMA consistently outperforms AgentMove under
+                  controlled comparisons using the same LLM backbone and evaluation samples, while
+                  also comparing favorably with strong supervised baselines. Additional analyses
+                  show that RAMA adapts its retrieval depth to what each prediction requires,
+                  remains effective across LLM backbones, and yields its largest gains for
+                  low-predictability users. Finally, we propose Mobility Tree-of-Thought (M-ToT),
+                  an interpretable view of execution traces showing how evidence is progressively
+                  acquired, evaluated, and refined into next-location predictions.
+                </p>
+                <figure class="abstract__figure">
+                  <a href="assets/publications/rama-figure.png" target="_blank" rel="noopener">
+                    <img src="assets/publications/rama-figure.png" alt="RAMA framework overview: prediction context, recursive mobility profiler, and grounded prediction" width="1226" height="540" loading="lazy">
+                  </a>
+                  <figcaption>Overview of RAMA. Click to open full size.</figcaption>
+                </figure>
+              </details>
+            </div>
+          </article>
+
+          <article class="project">
+            <a class="project__thumb-link" href="assets/publications/ragdetect-figure.png" target="_blank" rel="noopener" title="Open full-size figure">
+              <img class="project__thumb project__thumb--figure" src="assets/publications/ragdetect-figure.png" alt="RAGDetect pipeline: SFT-LoRA, sample once, span-F1 preferences, DPO-LoRA, improved span detector" width="1086" height="484" loading="lazy">
+            </a>
+            <div class="project__body">
+              <h3>RAGDetect: Offline Metric-Aligned Preference Optimization for Hallucination Span Detection</h3>
+              <p class="project__authors"><strong>Ahmed Ibrahim</strong>, Yllias Chali</p>
+              <p class="project__venue">Submitted to <strong>COLING 2027</strong> <span class="badge">Under review</span></p>
+              <p class="project__venue">
+                <span class="metric">60.8 span F1 (14B)</span>
+                <span class="metric">~14–22× fewer generated outputs than RL (est.)</span>
+              </p>
+              <ul class="tags" aria-label="Keywords">
+                <li>Hallucination Detection</li><li>RAG</li><li>DPO</li><li>LoRA</li><li>Preference Optimization</li><li>LLM Post-Training</li><li>Span Detection</li>
+              </ul>
+              <p class="project__links">
+                <span class="btn btn--soon" aria-disabled="true" title="Coming soon">📄 Paper <small>soon</small></span>
+                <span class="btn btn--soon" aria-disabled="true" title="Coming soon">💻 Code <small>soon</small></span>
+              </p>
+              <details class="abstract">
+                <summary>Abstract</summary>
+                <p>
+                  Locating unsupported spans in a retrieval-augmented answer can be harder than
+                  deciding whether it contains unsupported content at all. Recent detectors trained
+                  with reinforcement learning achieve strong span-level results but must generate
+                  many rollouts during training, which makes training costly. We investigate whether
+                  offline preference optimization can reach comparable accuracy. We introduce
+                  RAGDetect, a generative detector that extracts unsupported substrings from LLM
+                  responses given their evidence documents, trained with Direct Preference
+                  Optimization (DPO) on fixed preference pairs. In preliminary RAGTruth experiments,
+                  the detectors reach macro span F1 of 58.5 at 7B and 60.8 at 14B under greedy
+                  decoding, comparable to published RLSeek results of 57.5 and 60.1, which use
+                  sampled decoding; our 7B model scores 57.3 when decoded the same way. The pipeline
+                  generates approximately 14–22 times fewer outputs than we estimate for the
+                  published RL configurations. These results suggest that offline preference
+                  optimization can approach online-RL accuracy on this task with a fraction of the
+                  generated outputs.
+                </p>
+                <figure class="abstract__figure">
+                  <a href="assets/publications/ragdetect-figure.png" target="_blank" rel="noopener">
+                    <img src="assets/publications/ragdetect-figure.png" alt="RAGDetect pipeline: an SFT-LoRA detector is sampled once, candidates are ranked by span F1 into preference pairs, then trained with DPO-LoRA without online rollouts" width="1086" height="484" loading="lazy">
+                  </a>
+                  <figcaption>Overview of RAGDetect. Click to open full size.</figcaption>
+                </figure>
+              </details>
+            </div>
+          </article>
         </section>
 
         <section id="projects">
-          <h2>Projects &amp; Publications</h2>
+          <h2>Projects</h2>
+
+          <!--
+            To add a project, copy one <article class="project"> block.
+            To add links (GitHub repo, paper, demo), uncomment the project__links line
+            and put in the real URLs.
+          -->
 
           <article class="project">
-            <img class="project__thumb" src="assets/project-1.svg" alt="Thumbnail for Project One" width="200" height="130" loading="lazy">
+            <img class="project__thumb" src="assets/projects/lora-qwen.svg" alt="Thumbnail for LoRA fine-tuning of Qwen2.5" width="200" height="130" loading="lazy">
             <div class="project__body">
-              <h3>Project One: A Short, Catchy Title</h3>
-              <p class="project__authors"><strong>Ahmed Ibrahim</strong>, Collaborator A, Collaborator B</p>
-              <p class="project__venue">Conference 2026 <span class="badge">Oral</span></p>
-              <p class="project__desc">One or two sentences about what this project does and why it matters.</p>
-              <p class="project__links">
-                <a href="https://example.com">Paper</a>
-                <a href="https://github.com/A7medElsharkawy">Code</a>
-                <a href="https://example.com">Website</a>
+              <h3>LoRA-Based Fine-Tuning of Qwen2.5 for Extraction and Translation</h3>
+              <p class="project__venue"><span class="metric">85% F1 vs 62% base</span></p>
+              <p class="project__desc">
+                Fine-tuned a Qwen2.5 model for information extraction and translation tasks,
+                reaching <strong>85% F1 compared to 62%</strong> for the base Qwen2.5-7B. Used LoRA
+                to cut the number of trainable parameters, improving efficiency and reducing
+                compute requirements without sacrificing accuracy.
               </p>
+              <ul class="tags" aria-label="Technologies">
+                <li>LoRA</li><li>Qwen2.5</li><li>Python</li><li>Open-source LLMs</li>
+              </ul>
+              <!-- <p class="project__links"><a href="https://github.com/A7medElsharkawy/REPO">Code</a></p> -->
             </div>
           </article>
 
           <article class="project">
-            <img class="project__thumb" src="assets/project-2.svg" alt="Thumbnail for Project Two" width="200" height="130" loading="lazy">
+            <img class="project__thumb" src="assets/projects/docubrain.svg" alt="Thumbnail for DocuBrain, a scalable RAG system" width="200" height="130" loading="lazy">
             <div class="project__body">
-              <h3>Project Two: Another Cool Thing</h3>
-              <p class="project__authors"><strong>Ahmed Ibrahim</strong></p>
-              <p class="project__venue">Side project · 2025</p>
-              <p class="project__desc">A tool I built to solve a problem I kept running into.</p>
-              <p class="project__links">
-                <a href="https://github.com/A7medElsharkawy">Code</a>
-                <a href="https://example.com">Demo</a>
+              <h3>DocuBrain: Scalable RAG System</h3>
+              <p class="project__venue">
+                <span class="metric">60% faster queries</span>
+                <span class="metric">+50% retrieval precision</span>
               </p>
+              <p class="project__desc">
+                An interactive PDF question-answering system built on Retrieval-Augmented Generation.
+                Features an asynchronous FastAPI backend for document ingestion, vector indexing,
+                semantic search and LLM-powered answers, with background processing via Celery,
+                RabbitMQ and Redis, including automatic task retries.
+              </p>
+              <ul class="tags" aria-label="Technologies">
+                <li>LangChain</li><li>FastAPI</li><li>Qdrant</li><li>MongoDB</li><li>Celery</li><li>RabbitMQ</li><li>Redis</li>
+              </ul>
+              <!-- <p class="project__links"><a href="https://github.com/A7medElsharkawy/REPO">Code</a></p> -->
             </div>
           </article>
-        </section>
 
-        <section id="experience">
-          <h2>Experience</h2>
-          <ul class="timeline">
-            <li><span class="timeline__when">2026 – now</span><span><strong>Software Engineer</strong>, Company</span></li>
-            <li><span class="timeline__when">2025</span><span><strong>Intern</strong>, Company</span></li>
-            <li><span class="timeline__when">2021 – 2025</span><span><strong>B.Sc. Computer Science</strong>, Your University</span></li>
-          </ul>
+          <article class="project">
+            <img class="project__thumb" src="assets/projects/medical-cnn.svg" alt="Thumbnail for microscopic medical image classification" width="200" height="130" loading="lazy">
+            <div class="project__body">
+              <h3>Microscopic Medical Classification Using Hybrid CNN Models</h3>
+              <p class="project__venue">
+                <span class="metric">98.23% recall</span>
+                <span class="metric">83.3% accuracy</span>
+              </p>
+              <p class="project__desc">
+                A hybrid CNN built on ResNet101V2 (pre-trained on ImageNet) for early-stage
+                classification of microscopic medical images, enhancing feature extraction
+                for improved classification.
+              </p>
+              <ul class="tags" aria-label="Technologies">
+                <li>Keras</li><li>ResNet101V2</li><li>Scikit-learn</li><li>Docker</li>
+              </ul>
+              <!-- <p class="project__links"><a href="https://github.com/A7medElsharkawy/REPO">Code</a></p> -->
+            </div>
+          </article>
         </section>
 
         <footer class="footer">
-          <p>© <span id="year">2026</span> Ahmed Ibrahim · Deployed automatically with GitHub Actions</p>
+          <p>© <span id="year">2026</span> Ahmed Ibrahim</p>
         </footer>
       </main>
     </div>
